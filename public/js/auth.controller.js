@@ -15,7 +15,7 @@
             $http.post(
                 '/signup', this.user
             ).then(function(res) {
-                vm.authentication = res.data.user;
+                vm.authentication.user = res.data;
                 $location.path('/canvas');
             }).catch(function(err) {
                 vm.error = err.message;
@@ -26,7 +26,7 @@
             $http.post(
                 '/signin', this.user
             ).then(function(res) {
-                vm.authentication = res.data.user;
+                vm.authentication.user = res.data;
                 $location.path('/canvas');
             }).catch(function(err) {
                 vm.error = err.data.message;
