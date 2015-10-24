@@ -1,11 +1,24 @@
 {
-  "name": "Scribbl",
-  "version": "0.0.1",
-  "private": true,
+  "name": "scribbl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scribblapp/Scribble.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scribblapp/Scribble/issues"
+  },
+  "homepage": "https://github.com/scribblapp/Scribble#readme",
   "dependencies": {
-    "react-native": "^0.13.1"
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3"
   }
 }
