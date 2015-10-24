@@ -33,6 +33,14 @@ angular
             .state('friends', {
                 url: "/friends",
                 templateUrl: "friends.html"
+            })
+            .state('add', {
+                url: "/add",
+                templateUrl: "add.html"
+            })
+            .state('send', {
+                url: "/send",
+                templateUrl: "send.html"
             });
     }
 })();
