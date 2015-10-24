@@ -1,9 +1,9 @@
 (function() {
     angular
         .module('scribbl')
-        .controller('SideMenuCtrl', SideMenuCtrl);
+        .controller('SideMenuController', SideMenuController);
 
-    function SideMenuCtrl($timeout, $mdSidenav, $mdUtil, $log) {
+    function SideMenuController($timeout, $mdSidenav, $mdUtil, $log) {
 
         this.toggleLeft = buildToggler('left');
 
@@ -22,7 +22,15 @@
 
             return debounceFn;
         }
+
+        this.close = function() {
+            $mdSidenav('left').close()
+                .then(function() {
+                    $log.debug("close LEFT is done");
+                });
+            
+        };
     }
 
-    SideMenuCtrl.$inject = ['$timeout', '$mdSidenav', '$mdUtil', '$log'];
+    SideMenuController.$inject = ['$timeout', '$mdSidenav', '$mdUtil', '$log'];
 })();

@@ -3,32 +3,32 @@
     
     angular
         .module('scribbl')
-        .controller('SigninController', SigninController);
+        .controller('AuthController', AuthController);
 
-    function SigninController(Authentication, $http) {
+    AuthController.$inject = ['Auth', '$http'];
+
+    function AuthController(Auth, $http) {
         var vm = this;
-        vm.authentication = Authentication;
+        vm.authentication = Auth;
         
         vm.signup = function() {
             $http.post(
-                '/signup', this.credentials
+                '/signup', this.user
             ).then(function(res) {
                 vm.authentication = res.data.user;
             }).catch(function(err) {
-                console.log(err);
+                vm.error = err.message;
             });
         };
 
         vm.signin = function() {
             $http.post(
-                '/signin', this.credentials
+                '/signin', this.user
             ).then(function(res) {
                 vm.authentication = res.data.user;
             }).catch(function(err) {
-                console.log(err);
+                vm.error = err.data.message;
             });
         };
     }
-
-    SigninController.inject = ['Authentication', '$http'];
 })();

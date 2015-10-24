@@ -4,15 +4,15 @@
     // Authentication service for user variables
     angular
         .module('scribbl')
-        .factory('Authentication', Authentication);
+        .factory('Auth', Auth);
 
-    function Authentication($window) {
+    Auth.$inject = ['$window'];
+
+    function Auth($window) {
         var auth = {
             user: $window.user
         };
 
         return auth;
     };
-
-    Authentication.$inject = ['$window'];
-});
+})();

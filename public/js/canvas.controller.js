@@ -5,6 +5,8 @@
         .module('scribbl')
         .controller('CanvasController', CanvasController);
 
+    CanvasController.inject = [];
+    
     function CanvasController() {
         var vm = this;
         vm.showColors = false;
@@ -17,6 +19,4 @@
             }
         };
     }
-
-    CanvasController.inject = [];
 })();
