@@ -1,22 +1,5 @@
 <div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage">
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-        <md-content layout-padding="">
-            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-                <md-button ng-click="sidemenu.close()" class="md-primary">
-                    Close Sidenav Left
-                </md-button>
-                <md-button href="friends.html">
-                    Friends
-                </md-button>
-                <md-button href="draw.html">
-                    Draw
-                </md-button>
-                <md-button href="view.html">
-                    Your Scribls
-                </md-button>
-            </section>
-        </md-content>
-    </md-sidenav>
+    <ng-include src="'sidemenu.html'"></ng-include>
     <md-toolbar class="md-warn">
         <div class="md-toolbar-tools">
             <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
