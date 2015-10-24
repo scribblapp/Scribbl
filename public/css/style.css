@@ -8,3 +8,7 @@
 .aligner-item {
     flex: 1;
 }
+
+.centered-text {
+    text-align: center;
+}
