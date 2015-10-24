@@ -75,6 +75,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res, next) => {
+    console.log(req.user);
     passport.authenticate('local', (err, user, info) => {
         if (err || !user) {
             res.status(400).send(info);
@@ -92,4 +93,8 @@ exports.signin = (req, res, next) => {
             });
         }
     })(req, res, next);
+};
+
+exports.add = (req, res, next) => {
+    console.log(req.user);
 };

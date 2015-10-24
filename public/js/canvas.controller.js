@@ -8,7 +8,9 @@
     CanvasController.inject = ['Auth', '$location'];
     
     function CanvasController(Auth, $location) {
-        if (!Auth.user)
+        this.authentication = Auth;
+
+        if (!this.authentication.user)
             $location.path('/');
         
         var vm = this;
