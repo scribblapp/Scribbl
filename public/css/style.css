@@ -1,0 +1,10 @@
+.aligner {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.aligner-item {
+    flex: 1;
+}
