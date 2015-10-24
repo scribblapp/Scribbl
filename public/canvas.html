@@ -1,4 +1,17 @@
+
 <div ng-controller="CanvasController as canvas">
+    <ng-include src="'sidemenu.html'"></ng-include>
+        <md-toolbar class="md-warn">
+            <div class="md-toolbar-tools">
+                <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
+                    <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
+                </md-button>
+                <span flex></span>
+                <h2 class="md-flex">Draw</h2>
+                <span flex></span>
+                <span style="width:30px;"></span>
+            </div>
+        </md-toolbar>
     <div pw-canvas style="z-index:1000" options="{width: 400, height: 700, color: canvas.myColor}"></div>
     <md-button ng-click="canvas.toggleColors()" class="fixed  md-mini" aria-label="Eat cake">
         <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
