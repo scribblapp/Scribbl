@@ -6,21 +6,28 @@
         .controller('SigninController', SigninController);
 
     function SigninController(Authentication, $http) {
-        $http.post(
-            '/signup', this.credentials
-        ).then(function(res) {
-            console.log(res);
-        }).catch(function(err) {
-            console.log(err);
-        });
+        var vm = this;
+        vm.authentication = Authentication;
+        
+        vm.signup = function() {
+            $http.post(
+                '/signup', this.credentials
+            ).then(function(res) {
+                vm.authentication = res.data.user;
+            }).catch(function(err) {
+                console.log(err);
+            });
+        };
 
-        $http.post(
-            '/signin', this.credentials
-        ).then(function(res) {
-            console.log(res);
-        }).catch(function(err) {
-            console.log(err);
-        });
+        vm.signin = function() {
+            $http.post(
+                '/signin', this.credentials
+            ).then(function(res) {
+                vm.authentication = res.data.user;
+            }).catch(function(err) {
+                console.log(err);
+            });
+        };
     }
 
     SigninController.inject = ['Authentication', '$http'];
