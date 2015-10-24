@@ -29,6 +29,10 @@ angular
             .state('canvas', {
                 url: "/canvas",
                 templateUrl: "canvas.html"
+            })
+            .state('friends', {
+                url: "/friends",
+                templateUrl: "friends.html"
             });
     }
 })();

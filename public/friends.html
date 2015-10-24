@@ -1,78 +1,56 @@
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
-    <script src="lib/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
-
-    <script src="js/module.js"></script>
-    <script src="js/auth.service.js"></script>
-    <script src="js/sidemenu.controller.js"></script>
-    <script src="js/auth.controller.js"></script>
-    
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <body ng-app="scribbl">
-        <div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage">
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-                <md-content layout-padding="">
-                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-                        <md-button ng-click="sidemenu.close()" class="md-primary">
-                            Close Sidenav Left
-                        </md-button>
-                        <md-button href="friends.html">
-                            Friends
-                        </md-button>
-                        <md-button href="draw.html">
-                            Draw
-                        </md-button>
-                        <md-button href="view.html">
-                            Your Scribls
-                        </md-button>
-                    </section>
-                </md-content>
-            </md-sidenav>
+<div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-content layout-padding="">
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+                <md-button ng-click="sidemenu.close()" class="md-primary">
+                    Close Sidenav Left
+                </md-button>
+                <md-button href="friends.html">
+                    Friends
+                </md-button>
+                <md-button href="draw.html">
+                    Draw
+                </md-button>
+                <md-button href="view.html">
+                    Your Scribls
+                </md-button>
             </section>
-            <md-toolbar class="md-warn">
-                <div class="md-toolbar-tools">
-                    <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
-                        <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
-                    </md-button>
-                    <span flex></span>
-                    <h2 class="md-flex">Friends</h2>
-                    <span flex></span>
-                    <span style="width:30px;">
-                </div>
-            </md-toolbar>
-
-			
-			   <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
-                        <b>{{ auth.error }}</b>
-                    </div>
-                    <md-input-container style="padding: 0px 0px 0px 0px">
-                        <label>search</label>
-                        <input ng-model="auth.user.username">
-                    </md-input-container>
-			    <div layout="row" style ="left:10%; position:relative;">
-			      <div flex="50">
-			        <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-			          <a style="font-size:25px;">jacob</a> 
-			        </md-checkbox>
-			        <md-checkbox ng-model="data.cb2" aria-label="Checkbox 2">
-			          <a style="font-size:25px;">jacob </a>
-			        </md-checkbox>
-			        <md-checkbox ng-model="data.cb3" aria-label="Checkbox 3">
-			          <a style="font-size:25px;">jacob </a>
-			        </md-checkbox>
-			        <md-checkbox ng-model="data.cb4" aria-label="Checkbox 4">
-			          <a style="font-size:25px;">jacob</a>
-			        </md-checkbox>
-			      </div>
-			     </div>
-			    <md-button class="md-raised md-primary" ng-click="auth.signin()"> Add More Friends </md-button>
-			    <md-button class="md-raised md-accent" ng-click="auth.signin()"> Send </md-button>
-            </section>
+        </md-content>
+    </md-sidenav>
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
+                <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
+            </md-button>
+            <span flex></span>
+            <h2 class="md-flex">Friends</h2>
+            <span flex></span>
+            <span style="width:30px;">
         </div>
-    </body>
+    </md-toolbar>
+	<div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
+        <b>{{ auth.error }}</b>
+    </div>
+    <md-input-container style="padding: 0px 0px 0px 0px">
+        <label>search</label>
+        <input ng-model="auth.user.username">
+    </md-input-container>
+	<div layout="row" style ="left:10%; position:relative;">
+		<div flex="50">
+			<md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+			    <a style="font-size:25px;">jacob</a> 
+			</md-checkbox>
+			<md-checkbox ng-model="data.cb2" aria-label="Checkbox 2">
+			    <a style="font-size:25px;">jacob </a>
+			</md-checkbox>
+			<md-checkbox ng-model="data.cb3" aria-label="Checkbox 3">
+			    <a style="font-size:25px;">jacob </a>
+			</md-checkbox>
+			<md-checkbox ng-model="data.cb4" aria-label="Checkbox 4">
+			    <a style="font-size:25px;">jacob</a>
+			</md-checkbox>
+		</div>
+	</div>
+	<md-button class="md-raised md-primary" ng-click="auth.signin()"> Add More Friends </md-button>
+	<md-button class="md-raised md-accent" ng-click="auth.signin()"> Send </md-button>
+</div>
