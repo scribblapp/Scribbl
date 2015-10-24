@@ -16,7 +16,7 @@
                 '/signup', this.user
             ).then(function(res) {
                 vm.authentication.user = res.data;
-                $location.path('/canvas');
+                $location.path('/friends');
             }).catch(function(err) {
                 vm.error = err.message;
             });
