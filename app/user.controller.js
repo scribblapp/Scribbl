@@ -95,6 +95,42 @@ exports.signin = (req, res, next) => {
     })(req, res, next);
 };
 
-exports.add = (req, res, next) => {
+exports.add = (req, res) => {
     console.log(req.user);
+    if (req.params.friend) {
+        User.findOne({
+            username: req.params.friend
+        }, (err, user) => {
+             if (err) {
+                 res.status(400).send(err);
+             } else if (!user) {
+                 res.status(400).send(new Error("User does not exist"));
+             } else {
+                 req.user.friends.push(user.username);
+                 User.findOne({
+                     username: req.user.username
+                 }).update({
+                     $set: { "friends" : req.user.friends } 
+                 }, (err, updated) => {
+                     if (err) {
+                         res.status(400).send(err);
+                     } else {
+                         res.send("ADDED");
+                     }
+                 });
+             }
+        });
+    }
+};
+
+exports.list = (req, res) => {
+    User.find({}, {
+        username: 1
+    }, (err, users) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.json(users);
+        }
+    });
 };

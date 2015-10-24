@@ -23,5 +23,10 @@
                 vm.showColors = true;
             }
         };
+
+        vm.sendImage = function() {
+            // Set state params with image info
+            $location.path('/send');
+        };
     }
 })();
