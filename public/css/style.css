@@ -20,6 +20,7 @@
 
 .pwColorSelector {
     list-style: none;
+    -webkit-padding-start: 0px;
 }
 
 .pwColor {
@@ -45,8 +46,8 @@
     z-index:1001;
     position:fixed;
     top:85px;
-    right:40px;
-    width:50px;
+    right:50px;
+    width:0px;
 }
 
 .fixed{
