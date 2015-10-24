@@ -1,107 +1,78 @@
-<style>
-    .buttondemoBasicUsage section {
-        background: #f7f7f7;
-        border-radius: 3px;
-        text-align: center;
-        margin: 1em;
-        position: relative !important;
-        padding-bottom: 10px;
-    }
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+    <script src="lib/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
+
+    <script src="js/module.js"></script>
+    <script src="js/auth.service.js"></script>
+    <script src="js/sidemenu.controller.js"></script>
+    <script src="js/auth.controller.js"></script>
     
-    .buttondemoBasicUsage md-content {
-        margin-right: 7px;
-    }
-    
-    .buttondemoBasicUsage section .md-button {
-        margin-top: 16px;
-        margin-bottom: 16px;
-    }
-    
-    .buttondemoBasicUsage .label {
-        position: absolute;
-        bottom: 5px;
-        left: 7px;
-        font-size: 14px;
-        opacity: 0.54;
-    }
-</style>
-<div ng-cloak="" class="buttondemoBasicUsage">
-    <md-content>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <body ng-app="scribbl">
+        <div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage">
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+                <md-content layout-padding="">
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+                        <md-button ng-click="sidemenu.close()" class="md-primary">
+                            Close Sidenav Left
+                        </md-button>
+                        <md-button href="friends.html">
+                            Friends
+                        </md-button>
+                        <md-button href="draw.html">
+                            Draw
+                        </md-button>
+                        <md-button href="view.html">
+                            Your Scribls
+                        </md-button>
+                    </section>
+                </md-content>
+            </md-sidenav>
+            </section>
+            <md-toolbar class="md-warn">
+                <div class="md-toolbar-tools">
+                    <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
+                        <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
+                    </md-button>
+                    <span flex></span>
+                    <h2 class="md-flex">Friends</h2>
+                    <span flex></span>
+                    <span style="width:30px;">
+                </div>
+            </md-toolbar>
 
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-            <md-button>{{title1}}</md-button>
-            <md-button md-no-ink="" class="md-primary">Primary (md-noink)</md-button>
-            <md-button ng-disabled="true" class="md-primary">Disabled</md-button>
-            <md-button class="md-warn">{{title4}}</md-button>
-            <div class="label">Flat</div>
-        </section>
-
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-            <md-button class="md-raised">Button</md-button>
-            <md-button class="md-raised md-primary">Primary</md-button>
-            <md-button ng-disabled="true" class="md-raised md-primary">Disabled</md-button>
-            <md-button class="md-raised md-warn">Warn</md-button>
-            <div class="label">Raised</div>
-        </section>
-
-
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-            <md-button class="md-fab" aria-label="Eat cake">
-                <md-icon md-svg-src="img/icons/cake.svg"></md-icon>
-            </md-button>
-
-            <md-button class="md-fab md-primary" aria-label="Use Android">
-                <md-icon md-svg-src="img/icons/android.svg"></md-icon>
-            </md-button>
-
-            <md-button class="md-fab" ng-disabled="true" aria-label="Comment">
-                <md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>
-            </md-button>
-
-            <md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
-                <md-icon md-svg-src="img/icons/ic_people_24px.svg"></md-icon>
-            </md-button>
-
-            <md-button class="md-fab md-mini" aria-label="Eat cake">
-                <md-icon md-svg-src="img/icons/cake.svg"></md-icon>
-            </md-button>
-
-            <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
-                <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
-            </md-button>
-            <div class="label">FAB</div>
-        </section>
-
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-            <md-button ng-href="{{googleUrl}}" target="_blank">Default Link</md-button>
-            <md-button class="md-primary" ng-href="{{googleUrl}}" target="_blank">Primary Link</md-button>
-
-            <md-button>Default Button</md-button>
-            <div class="label">Link vs. Button</div>
-        </section>
-
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-            <md-button class="md-primary md-hue-1">Primary Hue 1</md-button>
-            <md-button class="md-warn md-raised md-hue-2">Warn Hue 2</md-button>
-            <md-button class="md-accent">Accent</md-button>
-            <md-button class="md-accent md-raised md-hue-1">Accent Hue 1</md-button>
-            <div class="label">Themed</div>
-        </section>
-
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-            <md-button class="md-icon-button md-primary" aria-label="Settings">
-                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-            </md-button>
-            <md-button href="http://google.com" title="Launch Google.com in new window" target="_blank" ng-disabled="true" aria-label="Google.com" class="md-icon-button launch">
-                <md-icon md-svg-icon="img/icons/launch.svg"></md-icon>
-            </md-button>
-            <div class="label">Icon Button</div>
-        </section>
-    </md-content>
-</div>
+			
+			   <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
+                        <b>{{ auth.error }}</b>
+                    </div>
+                    <md-input-container style="padding: 0px 0px 0px 0px">
+                        <label>search</label>
+                        <input ng-model="auth.user.username">
+                    </md-input-container>
+			    <div layout="row" style ="left:10%; position:relative;">
+			      <div flex="50">
+			        <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+			          <a style="font-size:25px;">jacob</a> 
+			        </md-checkbox>
+			        <md-checkbox ng-model="data.cb2" aria-label="Checkbox 2">
+			          <a style="font-size:25px;">jacob </a>
+			        </md-checkbox>
+			        <md-checkbox ng-model="data.cb3" aria-label="Checkbox 3">
+			          <a style="font-size:25px;">jacob </a>
+			        </md-checkbox>
+			        <md-checkbox ng-model="data.cb4" aria-label="Checkbox 4">
+			          <a style="font-size:25px;">jacob</a>
+			        </md-checkbox>
+			      </div>
+			     </div>
+			    <md-button class="md-raised md-primary" ng-click="auth.signin()"> Add More Friends </md-button>
+			    <md-button class="md-raised md-accent" ng-click="auth.signin()"> Send </md-button>
+            </section>
+        </div>
+    </body>
