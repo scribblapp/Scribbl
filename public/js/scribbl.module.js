@@ -4,7 +4,7 @@
     angular.module('scribbl', [
         'ngAnimate',
         'ngAria',
-        'ngRoute',
+        'ui.router',
         'ngMaterial',
         'pw.canvas-painter'
     ]);
