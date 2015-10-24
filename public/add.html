@@ -6,7 +6,7 @@
                 <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
             </md-button>
             <span flex></span>
-            <h2 class="md-flex">Friends</h2>
+            <h2 class="md-flex">Add</h2>
             <span flex></span>
             <span style="width:30px;">
         </div>
@@ -20,9 +20,10 @@
     </md-input-container>
 	<div layout="row" style ="left:10%; position:relative;">
 		<div flex="50">
+			<md-checkbox ng-repeat="username in auth.user.friends" aria-label="Checkbox 1">
 			    <a style="font-size:25px;">{{username}}</a> 
+			</md-checkbox>
 		</div>
 	</div>
-	<md-button class="md-raised md-primary" ng-click="auth.signin()"> Add More Friends </md-button>
-	
+	<md-button class="md-raised md-accent" ng-click="auth.signin()"> Add! </md-button>
 </div>
