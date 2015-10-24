@@ -6,15 +6,15 @@ let LocalStrategy = require('passport-local').Strategy;
 let User = mongoose.model('User');
 
 // Serialize sessions
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
 // Deserialize sessions
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser((id, done) => {
     User.findOne({
         _id: id
-    }, '-salt -password', function(err, user) {
+    }, '-salt -password', (err, user) => {
         done(err, user);
     });
 });
@@ -23,10 +23,10 @@ passport.use(
     new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password'
-    }, function(username, password, done) {
+    }, (username, password, done) => {
         User.findOne({
             username: username.toLowerCase()
-        }, function(err, user) {
+        }, (err, user) => {
             if (err) {
                 return done(err);
             }
@@ -42,7 +42,7 @@ passport.use(
 );
 
 
-exports.signup = function(req, res) {
+exports.signup = (req, res) => {
     // For security measurement we remove the roles from the req.body object
     delete req.body.roles;
 
@@ -53,7 +53,7 @@ exports.signup = function(req, res) {
     user.provider = 'local';
 
     // Then save the user
-    user.save(function(err) {
+    user.save(err => {
         if (err) {
             return res.status(400).send({
                 message: err
@@ -63,7 +63,7 @@ exports.signup = function(req, res) {
             user.password = undefined;
             user.salt = undefined;
 
-            req.login(user, function(err) {
+            req.login(user, err => {
                 if (err) {
                     res.status(400).send(err);
                 } else {
@@ -74,8 +74,8 @@ exports.signup = function(req, res) {
     });
 };
 
-exports.signin = function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
+exports.signin = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err || !user) {
             res.status(400).send(info);
         } else {
@@ -83,7 +83,7 @@ exports.signin = function(req, res, next) {
             user.password = undefined;
             user.salt = undefined;
 
-            req.login(user, function(err) {
+            req.login(user, err => {
                 if (err) {
                     res.status(400).send(err);
                 } else {
