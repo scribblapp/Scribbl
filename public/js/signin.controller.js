@@ -5,15 +5,23 @@
         .module('scribbl')
         .controller('SigninController', SigninController);
 
-    function SigninController($http) {
+    function SigninController(Authentication, $http) {
         $http.post(
             '/signup', this.credentials
         ).then(function(res) {
             console.log(res);
         }).catch(function(err) {
             console.log(err);
-        });    
+        });
+
+        $http.post(
+            '/signin', this.credentials
+        ).then(function(res) {
+            console.log(res);
+        }).catch(function(err) {
+            console.log(err);
+        });
     }
 
-    SigninController.inject = ['$http'];
+    SigninController.inject = ['Authentication', '$http'];
 })();
