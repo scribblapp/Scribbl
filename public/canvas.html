@@ -1,26 +1,27 @@
-
-<div ng-controller="CanvasController as canvas">
+<div ng-controller="SideMenuController as sidemenu">
     <ng-include src="'sidemenu.html'"></ng-include>
-        <md-toolbar class="md-warn">
-            <div class="md-toolbar-tools">
-                <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
-                    <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
-                </md-button>
-                <span flex></span>
-                <h2 class="md-flex">Draw</h2>
-                <span flex></span>
-                <span style="width:30px;"></span>
-            </div>
-        </md-toolbar>
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
+                <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
+            </md-button>
+            <span flex></span>
+            <h2 class="md-flex">Draw</h2>
+            <span flex></span>
+            <span style="width:30px;"></span>
+        </div>
+    </md-toolbar>
+</div>
+<div ng-controller="CanvasController as canvas">
     <div pw-canvas style="z-index:1000" options="{width: 400, height: 700, color: canvas.myColor}"></div>
     <md-button ng-click="canvas.toggleColors()" class="fixed  md-mini" aria-label="Eat cake">
         <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
     </md-button>
     <div ng-if="canvas.showColors" class="fixed-colors" pw-color-selector="['#F44336', '#673AB7', '#2196F3', '#4CAF50' , '#FFEB3B', '#795548', '#000000']" color="canvas.myColor"></div>
-    <md-button  ng-click="canvas.Undo()" class="undo  md-mini">
+    <md-button ng-click="canvas.Undo()" class="undo  md-mini">
         <md-icon md-svg-src="img/icon/undo.svg"></md-icon>
     </md-button>
-    <md-button  ng-click="canvas.Send()" class="send  md-mini">
+    <md-button ng-click="canvas.Send()" class="send  md-mini">
         <md-icon md-svg-src="img/icon/send.svg"></md-icon>
     </md-button>
 </div>
