@@ -12,3 +12,64 @@
 .centered-text {
     text-align: center;
 }
+
+.pwCanvasPaint canvas:first-child {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -1px -1px 4px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -1px -1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pwColorSelector {
+    list-style: none;
+}
+
+.pwColor {
+    display: inline-block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border: 2px solid transparent;
+}
+
+.pwColor.active {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lineWidthSelector {
+    width: 100%;
+}
+.fixed-colors{
+    z-index:1001;
+    position:fixed;
+    top:35px;
+    right:40px;
+    width:50px;
+}
+
+.fixed{
+    z-index:1001;
+    position:fixed;
+    top:0px;
+    right:0px;
+    width:50px;
+    min-width: 50px;
+}
+.undo{
+    z-index:1001;
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:50px;
+    min-width: 50px;
+}
+.send{
+    z-index:1001;
+    position:fixed;
+    bottom:0px;
+    right:0px;
+    width:50px;
+    min-width: 50px;
+}

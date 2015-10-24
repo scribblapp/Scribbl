@@ -5,9 +5,12 @@
         .module('scribbl')
         .controller('CanvasController', CanvasController);
 
-    CanvasController.inject = [];
+    CanvasController.inject = ['Auth', '$location'];
     
-    function CanvasController() {
+    function CanvasController(Auth, $location) {
+        if (!Auth.user)
+            $location.path('/');
+        
         var vm = this;
         vm.showColors = false;
         

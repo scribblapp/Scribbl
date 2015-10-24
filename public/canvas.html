@@ -1,91 +1,13 @@
-<html>
-
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
-
-    <script src="js/scribbl.module.js"></script>
-    <script src="js/canvas.controller.js"></script>
-    <script src="lib/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
-    
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-     
-     body {
-         background-color: #efeeee;
-     }
-     .container {
-         width: 400px;
-         margin: 100px auto 0 auto;
-     }
-     .pwCanvasPaint canvas:first-child {
-         box-shadow: 2px 2px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(0,0,0,0.1);
-         -webkit-box-shadow: 2px 2px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(0,0,0,0.1);
-     }
-     .pwColorSelector {
-         list-style: none;
-     }
-     .pwColor {
-         display: inline-block;
-         border-radius: 50%;
-         width: 30px;
-         height: 30px;
-         margin-right: 5px;
-         border: 2px solid transparent;
-     }
-     .pwColor.active {
-         transform: scale(1.1);
-         -webkit-transform: scale(1.1);
-         box-shadow: 2px 3px 2px rgba(0,0,0,0.2);
-         -webkit-box-shadow: 2px 3px 2px rgba(0,0,0,0.2);
-     }
-     .lineWidthSelector {
-         width: 100%;
-     }
-     .undo {
-         margin-top: 20px;
-     }
-     .undo > button {
-         background-color: orange;
-         color: white;
-         border: none;
-         padding: 10px;
-         border-radius: 4px;
-     }
-     .undo > button[disabled] {
-         background-color: #aaa;
-     }
-
-     .fixed-colors{
-         z-index:1001;
-         position:fixed;
-         top:35px;
-         right:0px;
-         width:100px;
-     }
-
-     .fixed{
-         z-index:1001;
-         position:fixed;
-         top:0px;
-         right:0px;
-         width:100px;
-     }
-     
-     
-    </style>
-</head>
-
-<body ng-app="scribbl" ng-controller="CanvasController as canvas">
+<div ng-controller="CanvasController as canvas">
     <div pw-canvas style="z-index:1000" options="{width: 400, height: 700, color: canvas.myColor}"></div>
-    <md-button ng-click="canvas.toggleColors()" class="fixed md-fab md-mini" aria-label="Eat cake">
-        <md-icon md-svg-src="img/icons/cake.svg"></md-icon>
+    <md-button ng-click="canvas.toggleColors()" class="fixed  md-mini" aria-label="Eat cake">
+        <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
     </md-button>
-    <div ng-if="canvas.showColors" class="fixed-colors" pw-color-selector="['#000', '#00f', '#0f0', '#f00']" color="canvas.myColor"></div>
-</body>
-
-</html>
+    <div ng-if="canvas.showColors" class="fixed-colors" pw-color-selector="['#F44336', '#673AB7', '#2196F3', '#4CAF50' , '#FFEB3B', '#795548', '#000000']" color="canvas.myColor"></div>
+    <md-button  ng-click="canvas.Undo()" class="undo  md-mini">
+        <md-icon md-svg-src="img/icon/undo.svg"></md-icon>
+    </md-button>
+    <md-button  ng-click="canvas.Send()" class="send  md-mini">
+        <md-icon md-svg-src="img/icon/send.svg"></md-icon>
+    </md-button>
+</div>

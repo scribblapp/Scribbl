@@ -5,9 +5,9 @@
         .module('scribbl')
         .controller('AuthController', AuthController);
 
-    AuthController.$inject = ['Auth', '$http'];
+    AuthController.$inject = ['Auth', '$http', '$location'];
 
-    function AuthController(Auth, $http) {
+    function AuthController(Auth, $http, $location) {
         var vm = this;
         vm.authentication = Auth;
         
@@ -15,7 +15,8 @@
             $http.post(
                 '/signup', this.user
             ).then(function(res) {
-                vm.authentication = res.data.user;
+                vm.authentication.user = res.data;
+                $location.path('/canvas');
             }).catch(function(err) {
                 vm.error = err.message;
             });
@@ -25,7 +26,8 @@
             $http.post(
                 '/signin', this.user
             ).then(function(res) {
-                vm.authentication = res.data.user;
+                vm.authentication.user = res.data;
+                $location.path('/canvas');
             }).catch(function(err) {
                 vm.error = err.data.message;
             });
