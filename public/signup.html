@@ -1,3 +1,5 @@
+<html>
+
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
@@ -5,93 +7,70 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+    <script src="lib/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
+
+    <script src="js/module.js"></script>
+    <script src="js/auth.service.js"></script>
+    <script src="js/sidemenu.controller.js"></script>
+    <script src="js/auth.controller.js"></script>
+
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        angular.module('MyApp', ['ngAria', 'ngMaterial', 'ngAnimate'])
-            .controller('AppCtrl', function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
+</head>
 
-                $scope.toggleLeft = buildToggler('left');
-
-
-                /**
-                 * Build handler to open/close a SideNav; when animation finishes
-                 * report completion in console
-                 */
-                function buildToggler(navID) {
-                    var debounceFn = $mdUtil.debounce(function() {
-                        $mdSidenav(navID)
-                            .toggle()
-                            .then(function() {
-                                $log.debug("toggle " + navID + " is done");
-                            });
-                    }, 300);
-
-                    return debounceFn;
-                }
-
-            })
-            .controller('LeftCtrl', function($scope, $timeout, $mdSidenav, $log) {
-                $scope.close = function() {
-                    $mdSidenav('left').close()
-                        .then(function() {
-                            $log.debug("close LEFT is done");
-                        });
-
-                };
-            })
-    </script>
-
-    <body>
-        <div ng-controller="AppCtrl" layout="column" style="height:500px;" class="sidenavdemoBasicUsage" ng-app="MyApp">
-
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-                <md-content layout-padding="" ng-controller="LeftCtrl">
-                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-                        <md-button ng-click="close()" class="md-primary">
-                            Close Sidenav Left
-                        </md-button>
-                        <md-button href="friends.html">
-                            Friends
-                        </md-button>
-                        <md-button href="draw.html">
-                            Draw
-                        </md-button>
-                        <md-button href="view.html">
-                            Your Scribls
-                        </md-button>
-                    </section>
-                </md-content>
-            </md-sidenav>
-            </section>
-            <md-toolbar class="md-accent">
-                <div class="md-toolbar-tools">
-                    <md-button ng-click="toggleLeft()" aria-label="Settings" class="md-icon-button">
-
-                        <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
-
+<body ng-app="scribbl">
+    <div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage" ng-app="MyApp">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+            <md-content layout-padding="">
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+                    <md-button ng-click="sidemenu.close()" class="md-primary">
+                        Close Sidenav Left
                     </md-button>
-                    <span flex></span>
-                    <h2 class="md-flex">Sign up</h2>
-                    <span flex></span>
-                    <span style="width:30px;">
-                </div>
-            </md-toolbar>
+                    <md-button href="friends.html">
+                        Friends
+                    </md-button>
+                    <md-button href="draw.html">
+                        Draw
+                    </md-button>
+                    <md-button href="view.html">
+                        Your Scribls
+                    </md-button>
+                </section>
+            </md-content>
+        </md-sidenav>
+        </section>
+        <md-toolbar class="md-accent">
+            <div class="md-toolbar-tools">
+                <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
 
-            <div>
-                <md-content md-theme="docs-dark" layout-padding layout="column" layout-sm="column">
-                    <md-input-container>
-                        <label>Username</label>
-                        <input ng-model="user.title">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Password</label>
-                        <input ng-model="user.email" type="email">
-                    </md-input-container>
-                </md-content>
+                    <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
+
+                </md-button>
+                <span flex></span>
+                <h2 class="md-flex">Sign up</h2>
+                <span flex></span>
+                <span style="width:30px;"></span>
             </div>
+        </md-toolbar>
 
-            </section>
-
+        <div ng-controller="AuthController as auth">
+            <md-content md-theme="docs-dark" layout-padding layout="column" layout-sm="column">
+                <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px">
+                    <b>{{ auth.error }}</b>
+                </div>
+                <md-input-container>
+                    <label>username</label>
+                    <input ng-model="auth.user.username">
+                </md-input-container>
+                <md-input-container>
+                    <label>password</label>
+                    <input ng-model="auth.user.password" type="password">
+                </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="auth.signup()"> Sign in </md-button>
+            </md-content>
         </div>
-    </body>
+        </section>
+    </div>
+</body>
+
+</html>
