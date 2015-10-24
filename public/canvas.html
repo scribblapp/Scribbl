@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+
+    <script src="js/module.js"></script>
+    <script src="js/canvas.controller.js"></script>
+    <script src="lib/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="scribbl">
+    <div ng-controller="CanvasController as canvas">
+        <div pw-canvas options="{width: 400, height: 300, color: '#ff0'}"></div>
+    </div>
+</body>
+
+</html>
