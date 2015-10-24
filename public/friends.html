@@ -20,17 +20,8 @@
     </md-input-container>
 	<div layout="row" style ="left:10%; position:relative;">
 		<div flex="50">
-			<md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-			    <a style="font-size:25px;">jacob</a> 
-			</md-checkbox>
-			<md-checkbox ng-model="data.cb2" aria-label="Checkbox 2">
-			    <a style="font-size:25px;">jacob </a>
-			</md-checkbox>
-			<md-checkbox ng-model="data.cb3" aria-label="Checkbox 3">
-			    <a style="font-size:25px;">jacob </a>
-			</md-checkbox>
-			<md-checkbox ng-model="data.cb4" aria-label="Checkbox 4">
-			    <a style="font-size:25px;">jacob</a>
+			<md-checkbox ng-repeat="username in auth.user.friends" aria-label="Checkbox 1">
+			    <a style="font-size:25px;">{{username}}</a> 
 			</md-checkbox>
 		</div>
 	</div>
