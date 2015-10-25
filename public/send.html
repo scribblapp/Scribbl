@@ -21,7 +21,7 @@
         </md-input-container>
 	    <div layout="row" style =" position:relative; width:90%;">
 		    <div flex="50">
-			    <md-checkbox class="md-primary" ng-repeat="username in send.users" ng-model="user.shouldSend" aria-label="Checkbox 1">
+			    <md-checkbox class="md-primary" ng-repeat="username in send.users | send." ng-model="user.shouldSend" aria-label="Checkbox 1">
 			        <a style="font-size:25px;">{{username}}</a> 
 			    </md-checkbox>
 		    </div>

@@ -1,12 +1,11 @@
 'use strict';
-
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 /**
- * Drawing Schema
+ * Image Schema
  */
-var DrawingSchema = new Schema({
+var ImageSchema = new Schema({
     data: {
         type: Buffer
     },
@@ -19,8 +18,8 @@ var DrawingSchema = new Schema({
     created: {
         type: Date
     },
-    currentTurn: {
-        type: String
+    responded: {
+        type: Boolean
     },
     turns: {
         type: Number  
@@ -35,4 +34,4 @@ var DrawingSchema = new Schema({
     }
 });
 
-mongoose.model('Drawing', DrawingSchema);
+mongoose.model('Image', ImageSchema);

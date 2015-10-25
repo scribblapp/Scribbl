@@ -5,6 +5,7 @@ let passport = require('passport');
 let _ = require('lodash');
 let LocalStrategy = require('passport-local').Strategy;
 let User = mongoose.model('User');
+let Image = mongoose.model('Image');
 
 // Serialize sessions
 passport.serializeUser((user, done) => {
@@ -145,6 +146,39 @@ exports.friends = (req, res) => {
             res.status(400).send(err);
         } else {
             res.json(user.friends);
+        }
+    });
+};
+
+exports.sendMessage = (req, res) => {
+    if (req.body.oldId) {
+        Image.update({
+            _id: req.body.oldId
+        }, {
+            $set: { responded: true }
+        });
+    }
+    
+    req.body.recipients.forEach(function(recipient) {
+        new Image({
+            sharedBy: req.user.username,
+            sharedWith: recipient.username,
+            image: req.body.image,
+            created: new Date(),
+            turns: req.body.turns
+        });
+    });
+};
+
+exports.getMessages = (req, res) => {
+    Image.find({
+        sharedWith: req.user.username,
+        responded: false
+    }).sort({created: -1}, (err, messages) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.json(messages);
         }
     });
 };

@@ -18,7 +18,17 @@
         };
 
         vm.sendImage = function() {
-            console.log(Image.data);
+            var recipiants = _.filter(vm.users, function(user) {
+                return user.shouldSend;
+            });
+            
+            this.message.recipiants = recipiants; 
+            this.message.image = Image.data;
+            $http.post('message/send', this.message).then(function(res) {
+                $location.path('/friends');
+            }).catch(function(err) {
+                console.log(err);
+            });
         };
     }
 })();

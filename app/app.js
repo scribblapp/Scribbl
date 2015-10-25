@@ -2,6 +2,7 @@
 /*global require, __dirname*/
 
 require('./user.model');
+require('./image.model');
 
 let express = require('express');
 let session = require('express-session');
@@ -43,6 +44,7 @@ app.post('/signin', user.signin);
 app.get('/users', user.list);
 app.get('/friends', user.friends);
 app.post('/friends/add', user.add);
+app.post('/message/send', user.sendMessage);
 
 app.listen(3000, () => {
     console.log("Up and listening! go to http://localhost:3000");
