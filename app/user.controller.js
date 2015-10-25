@@ -2,6 +2,7 @@
 
 let mongoose = require('mongoose');
 let passport = require('passport');
+let _ = require('lodash');
 let LocalStrategy = require('passport-local').Strategy;
 let User = mongoose.model('User');
 
@@ -115,12 +116,22 @@ exports.add = (req, res) => {
 };
 
 exports.list = (req, res) => {
+    var friends = {};
+
+    req.user.friends.forEach(friend => {
+        friends[friend] = true;
+    });
+    
     User.find({}, {
         username: 1
     }, (err, users) => {
         if (err) {
             res.status(400).send(err);
         } else {
+            users = _.filter(users, user => {
+                return !friends[user.username];
+            });
+            
             res.json(users);
         }
     });
