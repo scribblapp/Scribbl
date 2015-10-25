@@ -49,6 +49,11 @@
     right:50px;
     width:0px;
 }
+.md-checkbox .md-label {
+
+    margin-left: 15px;
+
+}
 
 .fixed{
     z-index:1001;

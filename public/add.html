@@ -19,13 +19,13 @@
             <label>search</label>
             <input ng-model="searchText">
         </md-input-container>
-	    <div layout="row" style ="left:10%; position:relative;">
+	    <div layout="row" >
 		    <div flex="50">
 			    <md-checkbox ng-repeat="user in add.users | filter:searchText | limitTo: 5" aria-label="Checkbox 1" ng-model="user.shouldAdd">
 			        <a style="font-size:25px;">{{user.username}}</a> 
 			    </md-checkbox>
 		    </div>
 	    </div>
-	    <md-button class="md-raised md-accent" ng-click="add.addFriends()"> Add! </md-button>
+	    <md-button class="md-raised md-accent" ng-click="add.addFriends()" style="width: 100%;"> Add! </md-button>
     </div>
 </div>
