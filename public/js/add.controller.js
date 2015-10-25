@@ -3,9 +3,14 @@
         .module('scribbl')
         .controller('AddController', AddController);
 
-    AddController.$inject = ['$location', '$http'];
+    AddController.$inject = ['Auth', '$location', '$http'];
     
-    function AddController($location, $http) {
+    function AddController(Auth, $location, $http) {
+        this.authentication = Auth;
+
+        if (!this.authentication.user)
+            $location.path('/');
+
         var vm = this;
 
         vm.getUsers = function() {

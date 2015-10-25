@@ -102,11 +102,13 @@ exports.add = (req, res) => {
     req.body.forEach(function(addition) {
         req.user.friends.push(addition.username);
     });
-    
+
     User.findOne({
         username: req.user.username
     }).update({
-        $set: { "friends" : req.user.friends } 
+        $set: {
+            "friends": req.user.friends
+        }
     }, (err, updated) => {
         if (err) {
             res.status(400).send(err);
@@ -122,7 +124,7 @@ exports.list = (req, res) => {
     req.user.friends.forEach(friend => {
         friends[friend] = true;
     });
-    
+
     User.find({}, {
         username: 1
     }, (err, users) => {
@@ -132,41 +134,70 @@ exports.list = (req, res) => {
             users = _.filter(users, user => {
                 return !friends[user.username];
             });
-            
+
             res.json(users);
         }
     });
 };
 
 exports.friends = (req, res) => {
-    User.findOne({
-        username: req.user.username
-    }, (err, user) => {
-        if (err) {
-            res.status(400).send(err);
-        } else {
-            res.json(user.friends);
-        }
-    });
+    if (req.user) {
+        User.findOne({
+            username: req.user.username
+        }, (err, user) => {
+            if (err) {
+                res.status(400).send(err);
+            } else {
+                res.json(user.friends);
+            }
+        });
+    } else {
+        res.json({});
+    }
 };
+
+function toBuffer(ab) {
+    var buffer = new Buffer(ab.byteLength);
+    var view = new Uint8Array(ab);
+    for (var i = 0; i < buffer.length; ++i) {
+        buffer[i] = view[i];
+    }
+    return buffer;
+}
 
 exports.sendMessage = (req, res) => {
     if (req.body.oldId) {
+        console.log('Yes');
         Image.update({
             _id: req.body.oldId
         }, {
-            $set: { responded: true }
+            $set: {
+                responded: true
+            }
+        }).exec(function(err, updated) {
+            if (err) {
+                console.log(err);
+            }
         });
     }
+ 
+    var image = new Image({
+        sharedBy: req.user.username,
+        responded: false,
+        width: req.body.width,
+        height: req.body.height,
+        data: req.body.image,
+        sharedWith: req.body.recipients[0].username,
+        created: new Date(),
+        turns: req.body.turns
+    });
     
-    req.body.recipients.forEach(function(recipient) {
-        new Image({
-            sharedBy: req.user.username,
-            sharedWith: recipient.username,
-            image: req.body.image,
-            created: new Date(),
-            turns: req.body.turns
-        });
+    image.save((err, image) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.jsonp(image);
+        }
     });
 };
 
@@ -174,11 +205,29 @@ exports.getMessages = (req, res) => {
     Image.find({
         sharedWith: req.user.username,
         responded: false
-    }).sort({created: -1}, (err, messages) => {
+    }, { data: 0 }).exec((err, messages) => {
         if (err) {
             res.status(400).send(err);
         } else {
+            console.log(messages);
             res.json(messages);
         }
     });
+};
+
+exports.messageByID = (req, res, next, id) => {
+    Image.findOne({
+        _id: id
+    }, function(err, message) {
+        if (err)
+            next(err);
+        else {
+            req.message = message;
+            next();
+        }
+    });
+};
+
+exports.getMessage = (req, res) => {
+    res.json(req.message);
 };

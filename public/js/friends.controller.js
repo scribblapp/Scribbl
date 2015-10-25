@@ -3,11 +3,16 @@
         .module('scribbl')
         .controller('FriendsController', FriendsController);
 
-    FriendsController.$inject = ['$location', '$http'];
+    FriendsController.$inject = ['Auth', '$location', '$http'];
     
-    function FriendsController($location, $http) {
-        var vm = this;
+    function FriendsController(Auth, $location, $http) {
+        this.authentication = Auth;
 
+        if (!this.authentication.user)
+            $location.path('/');
+        
+        var vm = this;
+        
         vm.getFriends = function() {
             $http.get('/friends').then(function(res) {
                 vm.users = res.data;

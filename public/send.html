@@ -15,18 +15,15 @@
 	    <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
             <b>{{ auth.error }}</b>
         </div>
-        <md-input-container style="padding: 0px 10px 0px 10px">
+        <md-input-container style="padding: 0px 10px 10px 10px">
             <label>search</label>
-            <input ng-model="auth.user.username">
+            <input ng-model="searchText">
         </md-input-container>
-	    <div layout="row" style =" position:relative; width:90%;">
-		    <div flex="50">
-			    <md-checkbox class="md-primary" ng-repeat="username in send.users | send." ng-model="user.shouldSend" aria-label="Checkbox 1">
-			        <a style="font-size:25px;">{{username}}</a> 
-			    </md-checkbox>
-		    </div>
-	    </div>
-	    
-	    <md-button class="md-raised md-primary" ng-click="send.sendImage()" style="width:97%;"> Send </md-button>
+	    <div layout="column">
+			<md-checkbox class="md-primary" style="margin-left:15px; margin-right:15px" ng-repeat="user in send.users | filter:searchText" ng-model="user.shouldSend" aria-label="Checkbox 1">
+			    <a style="font-size:25px;">{{user.username}}</a> 
+			</md-checkbox>
+	        <md-button class="md-raised md-primary" ng-click="send.sendImage()" style="margin-top: 20px;"> Send </md-button>
+        </div>
     </div>
 </div>

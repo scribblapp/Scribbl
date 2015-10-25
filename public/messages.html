@@ -6,12 +6,12 @@
                 <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
             </md-button>
             <span flex></span>
-            <h2 class="md-flex">Friends</h2>
+            <h2 class="md-flex">Messages</h2>
             <span flex></span>
             <span style="width:30px;"></span>
         </div>
     </md-toolbar>
-    <div ng-controller="MessagesController as friends" ng-init="messages.getMessages()">
+    <div ng-controller="MessagesController as messages" ng-init="messages.getMessages()">
         <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px">
             <b>{{ auth.error }}</b>
         </div>
@@ -19,16 +19,15 @@
             <label>search</label>
             <input ng-model="searchText">
         </md-input-container>
-        <div layout="row" style="left:5%; position:relative; width: 90%;">
-            <div ng-if="!friends.users">
+        <div layout="column" style="padding-left: 15px; padding-right: 15px;"">
+            <div ng-if="!messages.messages">
                 <h2 style="text-align: center">No new messages!</h2>
             </div>
-            <div ng-if="friends.users" style="width:100%;">
-                <div ng-repeat="message in messages.messages | filter:searchText" style="width:90%;padding-top:10px;">
-                    <a style="font-size:25px; ">{{sharedBy}}</a> <span flex></span><a style="font-size:25px; float:right; ">{{created}}</a>
-                    <md-button ng-click="messages.drawResponse()" class="  md-mini" aria-label="Eat cake" style="float:right;">
-                        <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
-                    </md-button>
+            <div ng-if="messages.messages">
+                <div ng-repeat="message in messages.messages | filter:searchText">
+                    <div class="row" style="position:relative;">
+                        <md-icon ng-click="messages.drawResponse(message)" md-svg-src="img/icon/draw.svg"></md-icon> &nbsp <font size="5px"> {{message.sharedBy}} </font> <font style="position: absolute; bottom:3px; right:3px;"> {{messages.formatDate(message.created)}} </font>
+                    </div>
                 </div>
             </div>
         </div>

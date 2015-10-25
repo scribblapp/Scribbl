@@ -9,11 +9,14 @@
     
     function CanvasController(Auth, $location, $window, Image) {
         this.authentication = Auth;
+        
+        var vm = this;
 
+        vm.ctx = undefined;
+        
         if (!this.authentication.user)
             $location.path('/');
         
-        var vm = this;
         vm.showColors = false;
 
         vm.width = $window.innerWidth;
@@ -31,8 +34,20 @@
         
         vm.sendImage = function() { 
             Image.data = vm.ctx.getImageData(0, 0, vm.width, vm.height);
+            console.log(Image.data);
             // Set state params with image info
             $location.path('/send');
         };
+
+        if (Image.render) {
+            var lol = setInterval(function() {
+                if (vm.ctx) {
+                    clearInterval(lol);
+                    console.log(Image);
+                    Image.render = false;
+                    vm.ctx.putImageData(new ImageData(Image.data.data, Image.data.width, Image.data.height), 0, 0);
+                }
+            }, 100);
+        }
     }
 })();

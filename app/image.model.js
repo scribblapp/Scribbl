@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
  */
 var ImageSchema = new Schema({
     data: {
-        type: Buffer
+        type: String
     },
     width: {
         type: Number

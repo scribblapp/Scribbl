@@ -19,18 +19,16 @@
             <label>search</label>
             <input ng-model="searchText">
         </md-input-container>
-        <div layout="row" style="left:5%; position:relative; width: 90%;">
-            <div ng-if="!friends.users">
-                <h2 style="text-align: center">No friends yet! Add some!</h2>
-            </div>
-            <div ng-if="friends.users" style="width:100%;">
+        <div layout="column">
+            <div style="padding-left: 15px; padding-right: 15px;">
+                <div ng-if="!friends.users">
+                    <h2 style="text-align: center">No friends yet! Add some!</h2>
+                </div>
                 <div ng-repeat="username in friends.users | filter:searchText" style="width:90%;padding-top:10px;">
-                    <a style="font-size:25px; ">{{username}}</a> <span flex></span><a style="font-size:25px; float:right; ">{{time}}</a>
+                    <a style="font-size:25px; ">{{username}}</a> <span flex></span><a style="font-size:25px; float:right ">{{time}}</a>
                 </div>
             </div>
+            <md-button href="#!/add" class="md-raised md-accent" style="margin-top: 20px;"> Add More Friends </md-button>
         </div>
-        <a href="#!/add">
-            <md-button class="md-raised md-accent" style="margin-top: 20px; width:97%;"> Add More Friends </md-button>
-        </a>
     </div>
 </div>

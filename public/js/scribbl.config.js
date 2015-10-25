@@ -41,6 +41,9 @@ angular
             .state('send', {
                 url: "/send",
                 templateUrl: "send.html"
-            });
+            }).state('messages', {
+                url: "/messages",
+                templateUrl: "messages.html"
+            });;
     }
 })();

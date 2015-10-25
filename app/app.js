@@ -34,10 +34,12 @@ app.use(session({
     })
 }));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.param('messageID', user.messageByID);
 
 app.post('/signup', user.signup);
 app.post('/signin', user.signin);
@@ -45,6 +47,8 @@ app.get('/users', user.list);
 app.get('/friends', user.friends);
 app.post('/friends/add', user.add);
 app.post('/message/send', user.sendMessage);
+app.get('/messages', user.getMessages);
+app.get('/messages/:messageID', user.getMessage);
 
 app.listen(3000, () => {
     console.log("Up and listening! go to http://localhost:3000");
