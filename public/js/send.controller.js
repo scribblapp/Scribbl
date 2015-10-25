@@ -4,9 +4,9 @@
         .module('scribbl')
         .controller('SendController', SendController);
 
-     SendController.$inject = ['$location', '$http'];
+    SendController.$inject = ['$location', '$http', 'Image'];
     
-    function SendController($location, $http) {
+    function SendController($location, $http, Image) {
         var vm = this;
         
         vm.getFriends = function() {
@@ -15,6 +15,10 @@
             }).catch(function(err) {
                 console.log(err);
             });
+        };
+
+        vm.sendImage = function() {
+            console.log(Image.data);
         };
     }
 })();

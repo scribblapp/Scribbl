@@ -25,7 +25,7 @@
 	    <div layout="row" style ="left:5%; position:relative; width: 90%;">
 
 		    <div flex="50">
-                <div ng-repeat="username in friends.users | filter:searchText | limitTo: 5" style="padding-top:10px;">
+                <div ng-repeat="username in friends.users | filter:searchText" style="padding-top:10px;">
 			        <a style="font-size:25px; ">{{username}}</a> 
 			    </div>
 		    </div>
