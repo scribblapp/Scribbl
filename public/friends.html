@@ -19,7 +19,7 @@
             <label>search</label>
             <input ng-model="searchText">
         </md-input-container>
-	    <div layout="row" style ="left:10%; position:relative;">
+	    <div layout="row" style ="left:5%; position:relative;">
 		    <div flex="50">
                 <div ng-repeat="username in friends.users | filter:searchText | limitTo: 5">
 			        <a style="font-size:25px;">{{username}}</a> 
