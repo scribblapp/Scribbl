@@ -15,7 +15,8 @@ angular.module('pw.canvas-painter')
 			restrict: 'AE',
 			scope: {
 				options: '=',
-				version: '='
+				version: '=',
+                ctx: '='
 			},
 			templateUrl: '../templates/canvas.html',
 			link: function postLink(scope, elm) {
@@ -83,7 +84,7 @@ angular.module('pw.canvas-painter')
 				});
 				elm.find('div').append(canvas);
 				elm.find('div').append(canvasTmp);
-				var ctx = canvas.getContext('2d');
+				var ctx = scope.ctx = canvas.getContext('2d');
 				var ctxTmp = canvasTmp.getContext('2d');
 
 				//inti variables
@@ -246,8 +247,6 @@ angular.module('pw.canvas-painter')
 					}
 				};
 				initListeners();
-
-
 
 				var undo = function(version){
 					if(undoCache.length > 0){

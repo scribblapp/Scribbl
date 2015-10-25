@@ -13,7 +13,7 @@
     </md-toolbar>
 </div>
 <div ng-controller="CanvasController as canvas">
-    <div pw-canvas style="z-index:1000" options="{width: 400, height: 700, color: canvas.myColor}"></div>
+    <div pw-canvas style="z-index:1000" options="{width: canvas.width, height: canvas.height, color: canvas.myColor}" ctx="canvas.ctx"></div>
     <md-button ng-click="canvas.toggleColors()" class="fixed  md-mini" aria-label="Eat cake">
         <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
     </md-button>
