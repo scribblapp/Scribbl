@@ -11,7 +11,7 @@
             <span style="width:30px;"></span>
         </div>
     </md-toolbar>
-    <div ng-controller="FriendsController as friends" ng-init="friends.getFriends()">
+    <div ng-controller="MessagesController as friends" ng-init="messages.getMessages()">
         <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px">
             <b>{{ auth.error }}</b>
         </div>
@@ -21,16 +21,16 @@
         </md-input-container>
         <div layout="row" style="left:5%; position:relative; width: 90%;">
             <div ng-if="!friends.users">
-                <h2 style="text-align: center">No friends yet! Add some!</h2>
+                <h2 style="text-align: center">No new messages!</h2>
             </div>
             <div ng-if="friends.users" style="width:100%;">
-                <div ng-repeat="username in friends.users | filter:searchText" style="width:90%;padding-top:10px;">
-                    <a style="font-size:25px; ">{{username}}</a> <span flex></span><a style="font-size:25px; float:right; ">{{time}}</a>
+                <div ng-repeat="message in messages.messages | filter:searchText" style="width:90%;padding-top:10px;">
+                    <a style="font-size:25px; ">{{sharedBy}}</a> <span flex></span><a style="font-size:25px; float:right; ">{{created}}</a>
+                    <md-button ng-click="messages.drawResponse()" class="  md-mini" aria-label="Eat cake" style="float:right;">
+                        <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
+                    </md-button>
                 </div>
             </div>
         </div>
-        <a href="#!/add">
-            <md-button class="md-raised md-accent" style="margin-top: 20px; width:97%;"> Add More Friends </md-button>
-        </a>
     </div>
 </div>
