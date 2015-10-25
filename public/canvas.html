@@ -15,7 +15,7 @@
 <div ng-controller="CanvasController as canvas">
     <div pw-canvas style="z-index:1000" options="{width: canvas.width, height: canvas.height, color: canvas.myColor}" ctx="canvas.ctx"></div>
     <md-button ng-click="canvas.toggleColors()" class="fixed  md-mini" aria-label="Eat cake">
-        <md-icon md-svg-src="img/icon/draw.svg"></md-icon>
+        <md-icon md-svg-src="img/icon/eyedropper.svg"></md-icon>
     </md-button>
     <div ng-if="canvas.showColors" class="fixed-colors" pw-color-selector="['#F44336', '#673AB7', '#2196F3', '#4CAF50' , '#FFEB3B', '#795548', '#000000']" color="canvas.myColor"></div>
     <md-button ng-click="canvas.Undo()" class="undo  md-mini">
@@ -24,4 +24,18 @@
     <md-button ng-click="canvas.sendImage()" class="send  md-mini">
         <md-icon md-svg-src="img/icon/send.svg"></md-icon>
     </md-button>
+
+  <md-select placeholder="Pick" ng-model="someVal" class="turns" >
+    <md-option value="1">1</md-option>
+    <md-option value="2">2</md-option>
+    <md-option value="3">3</md-option>
+    <md-option value="4">4</md-option>
+    <md-option value="5">5</md-option>
+    <md-option value="6">6</md-option>
+    <md-option value="7">7</md-option>
+    <md-option value="8">8</md-option>
+    <md-option value="9">9</md-option>
+    <md-option value="10">10</md-option>
+  </md-select>
+</div>
 </div>
