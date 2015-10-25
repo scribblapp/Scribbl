@@ -11,20 +11,22 @@
             <span style="width:30px;">
         </div>
     </md-toolbar>
-	<div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
-        <b>{{ auth.error }}</b>
+    <div ng-controller="SendController as send" ng-init="send.getFriends()">
+	    <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
+            <b>{{ auth.error }}</b>
+        </div>
+        <md-input-container style="padding: 0px 10px 0px 10px">
+            <label>search</label>
+            <input ng-model="auth.user.username">
+        </md-input-container>
+	    <div layout="row" style ="left:10%; position:relative;">
+		    <div flex="50">
+			    <md-checkbox ng-repeat="username in send.users" aria-label="Checkbox 1">
+			        <a style="font-size:25px;">{{username}}</a> 
+			    </md-checkbox>
+		    </div>
+	    </div>
+	    
+	    <md-button class="md-raised md-accent" ng-click="auth.signin()"> Send </md-button>
     </div>
-    <md-input-container style="padding: 0px 10px 0px 10px">
-        <label>search</label>
-        <input ng-model="auth.user.username">
-    </md-input-container>
-	<div layout="row" style ="left:10%; position:relative;">
-		<div flex="50">
-			<md-checkbox ng-repeat="username in auth.user.friends" aria-label="Checkbox 1">
-			    <a style="font-size:25px;">{{username}}</a> 
-			</md-checkbox>
-		</div>
-	</div>
-	
-	<md-button class="md-raised md-accent" ng-click="auth.signin()"> Send </md-button>
 </div>

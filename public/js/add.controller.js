@@ -23,7 +23,9 @@
 
             console.log(additions);
             
-            $http.post('/friends/add', additions).catch(function(err) {
+            $http.post('/friends/add', additions).then(function(res) {
+                $location.path('/friends');
+            }).catch(function(err) {
                 console.log(err);
             });
         };
