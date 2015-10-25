@@ -39,6 +39,10 @@
             $location.path('/send');
         };
 
+        vm.undo = function(){
+            vm.version--;
+        };
+        
         if (Image.render) {
             var lol = setInterval(function() {
                 if (vm.ctx) {

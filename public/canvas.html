@@ -13,12 +13,12 @@
     </md-toolbar>
 </div>
 <div ng-controller="CanvasController as canvas">
-    <div pw-canvas style="z-index:1000" options="{width: canvas.width, height: canvas.height, color: canvas.myColor}" ctx="canvas.ctx"></div>
+    <div pw-canvas style="z-index:1000" options="{undo: true, width: canvas.width, height: canvas.height, color: canvas.myColor}" version="canvas.version" ctx="canvas.ctx"></div>
     <md-button ng-click="canvas.toggleColors()" class="fixed  md-mini" aria-label="Eat cake">
         <md-icon md-svg-src="img/icon/eyedropper.svg"></md-icon>
     </md-button>
     <div ng-if="canvas.showColors" class="fixed-colors" pw-color-selector="['#F44336', '#673AB7', '#2196F3', '#4CAF50' , '#FFEB3B', '#795548', '#000000']" color="canvas.myColor"></div>
-    <md-button ng-click="canvas.Undo()" class="undo  md-mini">
+    <md-button ng-click="canvas.undo()" class="undo  md-mini">
         <md-icon md-svg-src="img/icon/undo.svg"></md-icon>
     </md-button>
     <md-button ng-click="canvas.sendImage()" class="send  md-mini">
