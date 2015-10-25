@@ -20,7 +20,7 @@
             <input ng-model="searchText">
         </md-input-container>
         <div layout="column" style="padding-left: 15px; padding-right: 15px;"">
-            <div ng-if="!messages.messages">
+            <div ng-if="!messages.messages.length">
                 <h2 style="text-align: center">No new messages!</h2>
             </div>
             <div ng-if="messages.messages">
