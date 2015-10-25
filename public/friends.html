@@ -8,21 +8,24 @@
             <span flex></span>
             <h2 class="md-flex">Friends</h2>
             <span flex></span>
-            <span style="width:30px;">
+            <span style="width:30px;"></span>
         </div>
     </md-toolbar>
-	<div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
-        <b>{{ auth.error }}</b>
+    <div ng-controller="FriendsController as friends" ng-init="friends.getFriends()">
+	    <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
+            <b>{{ auth.error }}</b>
+        </div>
+        <md-input-container style="padding: 0px 10px 0px 10px">
+            <label>search</label>
+            <input ng-model="searchText">
+        </md-input-container>
+	    <div layout="row" style ="left:10%; position:relative;">
+		    <div flex="50">
+                <div ng-repeat="username in friends.users | filter:searchText | limitTo: 5">
+			        <a style="font-size:25px;">{{username}}</a> 
+			    </div>
+		    </div>
+	    </div>
+	    <a href="#!/add"><md-button class="md-raised md-primary" style="width:100%;"> Add More Friends </md-button></a>
     </div>
-    <md-input-container style="padding: 0px 10px 0px 10px">
-        <label>search</label>
-        <input ng-model="auth.user.username">
-    </md-input-container>
-	<div layout="row" style ="left:10%; position:relative;">
-		<div flex="50">
-			    <a style="font-size:25px;">{{username}}</a> 
-		</div>
-	</div>
-	<a href="#!/add"><md-button class="md-raised md-primary" style="width:100%;"> Add More Friends </md-button></a>
-	
 </div>

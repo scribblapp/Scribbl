@@ -40,9 +40,9 @@ app.use(passport.session());
 
 app.post('/signup', user.signup);
 app.post('/signin', user.signin);
-app.get('/friends/add', user.add);
-app.get('/friends', user.add);
 app.get('/users', user.list);
+app.get('/friends', user.friends);
+app.post('/friends/add', user.add);
 
 app.listen(3000, () => {
     console.log("Up and listening! go to http://localhost:3000");

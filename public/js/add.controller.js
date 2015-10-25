@@ -15,5 +15,17 @@
                 console.log(err);
             });
         };
+
+        vm.addFriends = function() {
+            var additions = _.filter(vm.users, function(user) {
+                return user.shouldAdd;
+            });
+
+            console.log(additions);
+            
+            $http.post('/friends/add', additions).catch(function(err) {
+                console.log(err);
+            });
+        };
     }
 })();

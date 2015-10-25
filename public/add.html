@@ -17,11 +17,11 @@
         </div>
         <md-input-container style="padding: 0px 10px 0px 10px">
             <label>search</label>
-            <input ng-model="auth.user.username">
+            <input ng-model="searchText">
         </md-input-container>
 	    <div layout="row" style ="left:10%; position:relative;">
 		    <div flex="50">
-			    <md-checkbox ng-repeat="user in add.users" aria-label="Checkbox 1">
+			    <md-checkbox ng-repeat="user in add.users | filter:searchText | limitTo: 5" aria-label="Checkbox 1" ng-model="user.shouldAdd">
 			        <a style="font-size:25px;">{{user.username}}</a> 
 			    </md-checkbox>
 		    </div>
