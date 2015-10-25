@@ -1,6 +1,6 @@
 <div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage">
     <ng-include src="'sidemenu.html'"></ng-include>
-    <md-toolbar class="md-warn">
+    <md-toolbar class="">
         <div class="md-toolbar-tools">
             <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
                 <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
@@ -21,12 +21,12 @@
         </md-input-container>
 	    <div layout="row" style =" position:relative; width:90%;">
 		    <div flex="50">
-			    <md-checkbox ng-repeat="username in send.users" aria-label="Checkbox 1">
+			    <md-checkbox class="md-primary" ng-repeat="username in send.users" aria-label="Checkbox 1">
 			        <a style="font-size:25px;">{{username}}</a> 
 			    </md-checkbox>
 		    </div>
 	    </div>
 	    
-	    <md-button class="md-raised md-accent" ng-click="auth.signin()" style="width:96%;"> Send </md-button>
+	    <md-button class="md-raised md-primary" ng-click="auth.signin()" style="width:97%;"> Send </md-button>
     </div>
 </div>

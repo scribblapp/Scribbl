@@ -16,15 +16,15 @@
             <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px">
                 <b>{{ auth.error }}</b>
             </div>
-            <md-input-container>
+            <md-input-container class="md-raised md-warn ">
                 <label>username</label>
                 <input ng-model="auth.user.username">
             </md-input-container>
-            <md-input-container>
+            <md-input-container class="md-raised md-warn ">
                 <label>password</label>
                 <input ng-model="auth.user.password" type="password">
             </md-input-container>
-            <md-button class="md-raised md-primary" ng-click="auth.signin()"> Sign in </md-button>
+            <md-button class="md-raised md-warn" ng-click="auth.signin()"> Sign in </md-button>
             <div style="text-align:center;">
                 <a>Don't have an account? </a><a href ="#!/signup">Sign up!</a>
             </div>

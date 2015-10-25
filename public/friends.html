@@ -1,6 +1,6 @@
 <div ng-controller="SideMenuController as sidemenu" layout="column" style="height:500px;" class="sidenavdemoBasicUsage">
     <ng-include src="'sidemenu.html'"></ng-include>
-    <md-toolbar class="md-warn">
+    <md-toolbar class="md-accent">
         <div class="md-toolbar-tools">
             <md-button ng-click="sidemenu.toggleLeft()" aria-label="Settings" class="md-icon-button">
                 <md-icon md-svg-icon="img/icon/launch.svg"></md-icon>
@@ -15,17 +15,21 @@
 	    <div ng-if="auth.error" style="text-align:center; color: red; padding: 5px" >
             <b>{{ auth.error }}</b>
         </div>
-        <md-input-container style="padding: 0px 10px 0px 10px">
+        <md-input-container class="md-raised md-accent"  style="padding: 0px 10px 10px 10px">
             <label>search</label>
             <input ng-model="searchText">
         </md-input-container>
+
+
+        <md-divider md-inset style=" margin-left: 0px; "></md-divider>
 	    <div layout="row" style ="left:5%; position:relative; width: 90%;">
+
 		    <div flex="50">
-                <div ng-repeat="username in friends.users | filter:searchText | limitTo: 5">
-			        <a style="font-size:25px;">{{username}}</a> 
+                <div ng-repeat="username in friends.users | filter:searchText | limitTo: 5" style="padding-top:10px;">
+			        <a style="font-size:25px; ">{{username}}</a> 
 			    </div>
 		    </div>
 	    </div>
-	    <a href="#!/add"><md-button class="md-raised md-primary" style="width:95%;"> Add More Friends </md-button></a>
+	    <a href="#!/add"><md-button class="md-raised md-accent" style="width:97%;"> Add More Friends </md-button></a>
     </div>
 </div>
