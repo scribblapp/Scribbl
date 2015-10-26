@@ -42,11 +42,12 @@
             Image.oldId = undefined;
 
             $http.post('/message/send', vm.message).then(function(res) {
-                console.log(res.data);
                 $location.path('/messages');
             }).catch(function(err) {
                 console.log(err);
             });
+
+            $location.path('/messages');
         };
     }
 })();

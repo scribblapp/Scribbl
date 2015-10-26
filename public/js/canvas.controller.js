@@ -8,10 +8,10 @@
     CanvasController.inject = ['Auth', '$location', '$window', 'Image'];
     
     function CanvasController(Auth, $location, $window, Image) {
-        this.authentication = Auth;
-        
         var vm = this;
 
+        this.authentication = Auth;
+        
         vm.ctx = undefined;
         
         if (!this.authentication.user)
@@ -30,8 +30,6 @@
             }
         };
 
-        var shit;
-        
         vm.sendImage = function() { 
             Image.data = vm.ctx.getImageData(0, 0, vm.width, vm.height);
             console.log(Image.data);
@@ -44,10 +42,9 @@
         };
         
         if (Image.render) {
-            var lol = setInterval(function() {
+            var checkIfRendered = setInterval(function() {
                 if (vm.ctx) {
-                    clearInterval(lol);
-                    console.log(Image);
+                    clearInterval(checkIfRendered);
                     Image.render = false;
                     vm.ctx.putImageData(new ImageData(Image.data.data, Image.data.width, Image.data.height), 0, 0);
                 }
